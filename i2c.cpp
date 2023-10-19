@@ -2,7 +2,7 @@
 #include <Arduino.h>
 #include "Wire.h"
 #include "i2c.h"
-//#include "teensy_map.h"
+#include "teensy_map.h"
 
 uint8_t busScan(uint8_t bus, uint8_t* addresses)
 {   
