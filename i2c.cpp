@@ -3,6 +3,7 @@
 #include "Wire.h"
 #include "i2c.h"
 #include "teensy_map.h"
+#include "debugger.h"
 
 uint8_t busScan(uint8_t bus, uint8_t* addresses)
 {   
@@ -48,7 +49,7 @@ uint8_t busScan(uint8_t bus, uint8_t* addresses)
         {
             Wire2.begin();
             Wire2.setTimeout(10000);
-            //debug.printf("Testing Adress: 0x%x",*addresses);
+            //debugger.msg(2,"Testing Adress: 0x%x",*addresses);
             for(uint8_t target = 1; target <= 0x7F; target++)
             {
                 Wire2.beginTransmission(target);
@@ -57,8 +58,8 @@ uint8_t busScan(uint8_t bus, uint8_t* addresses)
                     //Found a device
                     //addresses[deviceCount] = target;
                     addresses[deviceCount] = target;
-                    debug.printf("Found Device at Adress: 0x%x\n",target);
-                    //debug.printf("Found Device at Adress: 0x%x\n",addresses[deviceCount] );
+                    debugger.msg(2,"Found Device at Adress: 0x%x\n",target);
+                    //debugger.msg(2,"Found Device at Adress: 0x%x\n",addresses[deviceCount] );
                     deviceCount++;
                 }
                 
